@@ -28,12 +28,28 @@ console.log('Yargs', argv);
 
 if(command === 'add') {
 	console.log('Adding new note');
-	notes.addNote(argv.title, argv.body);
+	var note = notes.addNote(argv.title, argv.body);
+	if(note) {
+		console.log('note created!'); 
+		notes.logNote(note);
+	} else {
+		console.log('note taken');
+	}
 } else if(command === 'list') {
 	console.log('List all notes');
 	notes.getAll();
 } else if(command === 'read'){
-	notes.getNote(argv.title);
+	var note = notes.getNote(argv.title);
+	if(note) {
+		console.log('note infomation:');
+		notes.logNote(note);
+	} else {
+		console.log('note not found');
+	}
+} else if (command === 'remove') {
+	noteRemoved = notes.removeNote(argv.title);
+	var message = noteRemoved ? `note: ${argv.title} deleted!` : `note: ${argv.title} not found!`;
+	console.log(message);
 } else {
 	console.log('Command not recognized');
 }
