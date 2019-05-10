@@ -1,0 +1,9 @@
+var person = {
+	name: 'andoew'
+};
+
+person.age = 22;
+debugger;
+person.name = "linnu";
+
+console.log(person);
